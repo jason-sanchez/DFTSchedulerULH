@@ -1,4 +1,6 @@
 ﻿Imports System.Diagnostics
+Imports System.IO
+
 '20140319 - wave3 test version for sysfeed5.
 '20140817 - mods for W3 Production.
 '20140818 - added file3 to include itwchargesNet.exe
@@ -8,7 +10,11 @@
 Module Module1
     Dim processit As Boolean = False
     Dim strLogString As String = ""
-    Dim objIniFile As New INIFile("d:\W3Production\HL7Mapper.ini") '20140817
+    Private fullinipath As String = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory, "..\..\..\Configs\ULH\HL7Mapper.ini")) ' New test
+    'Private fullinipath As String = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory, "..\..\..\..\..\..\..\..\..\Configs\ULH\HL7Mapper.ini")) ' local
+    Public objIniFile As New INIFile(fullinipath) '20140817 - New Test
+
+    'Dim objIniFile As New INIFile("d:\W3Production\HL7Mapper.ini") '20140817
     Dim file1 As String = objIniFile.GetString("DFT Scheduler", "file1", "(none)")
     Dim file2 As String = objIniFile.GetString("DFT Scheduler", "file2", "(none)")
 
@@ -19,7 +25,7 @@ Module Module1
     Sub main()
         runProcesses()
 
-        
+
 
 
     End Sub
@@ -110,7 +116,7 @@ Module Module1
             runTheProcess(file2)
             runTheProcess(file3) '20140818
 
-            
+
 
         Finally
         End Try
