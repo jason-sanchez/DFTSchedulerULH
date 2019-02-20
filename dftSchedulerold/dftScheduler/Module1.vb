@@ -14,19 +14,13 @@ Module Module1
     'Private fullinipath As String = Path.GetFullPath(Path.Combine(Directory.GetCurrentDirectory, "..\..\..\..\..\..\..\..\..\Configs\ULH\HL7Mapper.ini")) ' local
     Public objIniFile As New INIFile(fullinipath) '20140817 - New Test
 
-    'Public objIniFile As New INIFile("N:\FeedTester\Configs\ULH\HL7Mapper.ini") '20140817 - New Test
-
     'Dim objIniFile As New INIFile("d:\W3Production\HL7Mapper.ini") '20140817
     Dim file1 As String = objIniFile.GetString("DFT Scheduler", "file1", "(none)")
     Dim file2 As String = objIniFile.GetString("DFT Scheduler", "file2", "(none)")
 
     Dim file3 As String = objIniFile.GetString("DFT Scheduler", "file3", "(none)") '20140818
 
-    Dim dir As String = objIniFile.GetString("Settings", "directory", "(none)") & ":\"
-    Dim parent As String = objIniFile.GetString("Settings", "parentDir", "(none)") & "\"
-
-
-    Dim strLogDirectory As String = dir & parent & objIniFile.GetString("Settings", "logs", "(none)") '20140319
+    Dim strLogDirectory As String = objIniFile.GetString("Settings", "logs", "(none)") '20140319
 
     Sub main()
         runProcesses()
